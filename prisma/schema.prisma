@@ -82,20 +82,15 @@ model Section {
 model Student {
   idStudent              Int                      @id @default(autoincrement())
   studentName            String                   @db.VarChar(220)
-  englishName            String                   @db.VarChar(220)
-  mail                   String                   @unique @db.VarChar(220)
-  password               String                   @db.VarChar(220)
+  englishName            String                   @default("englishName") @db.VarChar(220)
+  mail                   String                   @default("student@duc.edu.iq") @db.VarChar(220)
   dob                    String                   @db.VarChar(220)
   section                Section                  @relation(fields: [sectionId], references: [idSection])
   sectionId              Int
   nationality            String                   @db.VarChar(220)
-  phone                  String                   @db.VarChar(220)
   gender                 Boolean
   studyType              Boolean
-  relationships          Boolean
   note                   String                   @db.Text
-  religion               String                   @db.VarChar(220)
-  motherName             String                   @db.VarChar(220)
   collegeNumber          String                   @db.VarChar(220)
   yearStudy              YearStudy                @relation(fields: [registerYearId], references: [idYearStudy])
   registerYearId         Int
@@ -144,6 +139,8 @@ model NationalInfo {
   nationalNumber String  @db.VarChar(220)
   issueNumber    String  @db.VarChar(220)
   issuePlace     String  @db.VarChar(220)
+  motherName     String  @db.VarChar(220)
+  religion       String  @db.VarChar(220)
   student        Student @relation(fields: [studentId], references: [idStudent])
   studentId      Int
 }
