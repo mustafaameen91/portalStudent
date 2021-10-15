@@ -12,6 +12,8 @@ exports.create = (req, res) => {
       issueNumber: req.body.issueNumber,
       issuePlace: req.body.issuePlace,
       studentId: req.body.studentId,
+      motherName: req.body.motherName,
+      religion: req.body.religion,
    });
 
    NationalInfo.create(nationalInfo, (err, data) => {

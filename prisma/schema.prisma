@@ -142,14 +142,14 @@ model NationalInfo {
   motherName     String  @db.VarChar(220)
   religion       String  @db.VarChar(220)
   student        Student @relation(fields: [studentId], references: [idStudent])
-  studentId      Int
+  studentId      Int     @unique
 }
 
 model StudentGraduation {
   idStudentGraduation Int     @id @default(autoincrement())
   graduationDate      String  @db.VarChar(220)
   student             Student @relation(fields: [studentId], references: [idStudent])
-  studentId           Int
+  studentId           Int     @unique
 }
 
 model StudentLevel {
@@ -175,7 +175,7 @@ model StudentSchool {
   studySubCategory             StudySubCategory  @relation(fields: [studySubCategoryId], references: [idStudySubCategory])
   studySubCategoryId           Int
   student                      Student           @relation(fields: [studentId], references: [idStudent])
-  studentId                    Int
+  studentId                    Int               @unique
   certificateStatus            CertificateStatus @relation(fields: [certificateStatusId], references: [idCertificateStatus])
   certificateStatusId          Int
   certificateStatusDescription String            @db.VarChar(220)
@@ -237,5 +237,5 @@ model Address {
   houseNumber  String   @db.VarChar(220)
   streetNumber String   @db.VarChar(220)
   student      Student  @relation(fields: [studentId], references: [idStudent])
-  studentId    Int
+  studentId    Int      @unique
 }

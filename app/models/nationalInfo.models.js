@@ -8,6 +8,8 @@ const NationalInfo = function (nationalInfo) {
    this.issueNumber = nationalInfo.issueNumber;
    this.issuePlace = nationalInfo.issuePlace;
    this.studentId = nationalInfo.studentId;
+   this.motherName = nationalInfo.motherName;
+   this.religion = nationalInfo.religion;
 };
 
 NationalInfo.create = async (newNationalInfo, result) => {
