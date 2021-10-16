@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const fs = require("fs");
+const history = require("connect-history-api-fallback");
 
 app.use(cors());
 app.use(express.json());
@@ -87,6 +88,17 @@ require("./app/routes/section.routes.js")(app);
 require("./app/routes/studentImage.routes.js")(app);
 require("./app/routes/certificateStatus.routes.js")(app);
 require("./app/routes/yearStudy.routes.js")(app);
+
+const staticFileMiddleware = express.static(__dirname + "/dist");
+app.use(staticFileMiddleware);
+app.use(
+   history({
+      disableDotRule: true,
+      verbose: true,
+   })
+);
+
+app.use(staticFileMiddleware);
 
 app.listen(3100, () => {
    console.log("app listening on port 3100");
