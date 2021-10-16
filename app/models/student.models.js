@@ -20,11 +20,12 @@ const Student = function (student) {
 };
 
 Student.create = async (newStudent, result) => {
+   console.log(newStudent);
    try {
       const student = await prismaInstance.student.create({
          data: newStudent,
       });
-
+      // console.log(student);
       result(null, student);
    } catch (err) {
       console.log(prismaErrorHandling(err));
@@ -96,10 +97,10 @@ Student.getBySearch = async (conditions, result) => {
                },
             },
             studentGraduation: true,
-            StudentImage: true,
+            studentImage: true,
             studentStatus: true,
             acceptedType: true,
-            Address: {
+            address: {
                include: {
                   province: {
                      select: {
@@ -115,6 +116,49 @@ Student.getBySearch = async (conditions, result) => {
          return student.studentLevel.length > 0;
       });
       result(null, filteredStudent);
+   } catch (err) {
+      console.log(prismaErrorHandling(err));
+      result(prismaErrorHandling(err), null);
+   }
+};
+
+Student.getStudentsCount = async (conditions, result) => {
+   let studentLevel = {};
+   if (conditions.studentLevel) {
+      console.log(conditions.studentLevel);
+      studentLevel.level = conditions.studentLevel;
+      delete conditions.studentLevel;
+   }
+   try {
+      const students = await prismaInstance.student.findMany({
+         where: {
+            ...conditions,
+         },
+         include: {
+            yearStudy: true,
+            section: true,
+            studentSchool: true,
+            studentLevel: {
+               where: {
+                  ...studentLevel,
+               },
+            },
+            studentGraduation: true,
+            studentImage: true,
+            studentStatus: true,
+            acceptedType: true,
+            address: {
+               include: {
+                  province: {
+                     select: {
+                        provinceName: true,
+                     },
+                  },
+               },
+            },
+         },
+      });
+      result(null, { studentsCount: students.length });
    } catch (err) {
       console.log(prismaErrorHandling(err));
       result(prismaErrorHandling(err), null);

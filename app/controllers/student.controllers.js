@@ -7,23 +7,7 @@ exports.create = (req, res) => {
       });
    }
 
-   const student = new Student({
-      studentName: req.body.studentName,
-      englishName: req.body.englishName,
-      mail: req.body.mail,
-      dob: req.body.dob,
-      sectionId: req.body.sectionId,
-      nationality: req.body.nationality,
-      gender: req.body.gender,
-      studyType: req.body.studyType,
-      note: req.body.note,
-      collegeNumber: req.body.collegeNumber,
-      registerYearId: req.body.registerYearId,
-      studentStatusId: req.body.studentStatusId,
-      acceptedTypeId: req.body.acceptedTypeId,
-   });
-
-   Student.create(student, (err, data) => {
+   Student.create(req.body, (err, data) => {
       if (err) res.status(err.code).send(err);
       else {
          res.send(data);
@@ -58,6 +42,38 @@ exports.findBySearch = (req, res) => {
    }
 
    Student.getBySearch(filtered, (err, data) => {
+      if (err) res.status(err.code).send(err);
+      else res.send(data);
+   });
+};
+
+exports.findStudentsCount = (req, res) => {
+   let filtered = {};
+
+   if (req.query.sectionId) {
+      filtered.sectionId = req.query.sectionId * 1;
+   }
+   if (req.query.registerYearId) {
+      filtered.registerYearId = req.query.registerYearId * 1;
+   }
+
+   if (req.query.studentStatusId) {
+      filtered.studentStatusId = req.query.studentStatusId * 1;
+   }
+
+   if (req.query.acceptedTypeId) {
+      filtered.acceptedTypeId = req.query.acceptedTypeId * 1;
+   }
+
+   if (req.query.studentLevel) {
+      filtered.studentLevel = req.query.studentLevel * 1;
+   }
+
+   if (req.query.studyType) {
+      filtered.studyType = req.query.studyType == 1 ? true : false;
+   }
+
+   Student.getStudentsCount(filtered, (err, data) => {
       if (err) res.status(err.code).send(err);
       else res.send(data);
    });
