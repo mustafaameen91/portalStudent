@@ -91,7 +91,7 @@ model Student {
   gender                 Boolean
   studyType              Boolean
   note                   String                   @db.Text
-  collegeNumber          String                   @db.VarChar(220)
+  collegeNumber          String                   @unique @db.VarChar(220)
   yearStudy              YearStudy                @relation(fields: [registerYearId], references: [idYearStudy])
   registerYearId         Int
   studentStatus          StudentStatus            @relation(fields: [studentStatusId], references: [idStudentStatus])
