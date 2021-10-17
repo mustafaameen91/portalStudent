@@ -88,6 +88,7 @@ require("./app/routes/section.routes.js")(app);
 require("./app/routes/studentImage.routes.js")(app);
 require("./app/routes/certificateStatus.routes.js")(app);
 require("./app/routes/yearStudy.routes.js")(app);
+require("./app/routes/imageType.routes.js")(app);
 
 const staticFileMiddleware = express.static(__dirname + "/dist");
 app.use(staticFileMiddleware);

@@ -9,6 +9,7 @@ exports.create = (req, res) => {
 
    const studentImage = new StudentImage({
       imagePath: req.body.imagePath,
+      imageTypeId: req.body.imageType,
       studentId: req.body.studentId,
    });
 

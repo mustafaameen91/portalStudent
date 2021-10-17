@@ -1,0 +1,2 @@
+x = "aws"
+print(x)
