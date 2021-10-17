@@ -1,2 +1,0 @@
-x = "aws"
-print(x)
