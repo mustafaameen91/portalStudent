@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{528:function(e,n,t){"use strict";t.r(n);var o={layout:"login"},l=t(54),component=Object(l.a)(o,(function(){var e=this,n=e.$createElement;return(e._self._c||n)("h4",[e._v("Form")])}),[],!1,null,"0eabfe2d",null);n.default=component.exports}}]);
