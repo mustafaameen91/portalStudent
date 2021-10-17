@@ -16,7 +16,7 @@ exports.create = (req, res) => {
       documentNumber: req.body.documentNumber * 1,
       documentDate: req.body.documentDate,
       lessonCount: req.body.lessonCount * 1,
-      Directorate: req.body.Directorate,
+      directorate: req.body.directorate,
       studySubCategoryId: req.body.studySubCategoryId,
       studentId: req.body.studentId,
       certificateStatusId: req.body.certificateStatusId,
