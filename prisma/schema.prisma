@@ -36,16 +36,19 @@ model ExitCauses {
   idExitCauses    Int      @id @default(autoincrement())
   exitCausesTitle String   @db.VarChar(220)
   createdAt       DateTime @default(now())
+  student         Student  @relation(fields: [studentId], references: [idStudent])
+  studentId       Int
   user            User     @relation(fields: [createdBy], references: [idUser])
   createdBy       Int
 }
 
 model PassType {
-  idPassType Int      @id @default(autoincrement())
-  passName   String   @db.VarChar(220)
-  createdAt  DateTime @default(now())
-  user       User     @relation(fields: [createdBy], references: [idUser])
-  createdBy  Int
+  idPassType    Int             @id @default(autoincrement())
+  passName      String          @db.VarChar(220)
+  createdAt     DateTime        @default(now())
+  user          User            @relation(fields: [createdBy], references: [idUser])
+  createdBy     Int
+  StudentSchool StudentSchool[]
 }
 
 model User {
@@ -107,6 +110,7 @@ model Student {
   nationalityCertificate NationalityCertificate[]
   studentImage           StudentImage[]
   address                Address?
+  ExitCauses             ExitCauses[]
 }
 
 model YearStudy {
@@ -128,8 +132,6 @@ model StudentResponsible {
 model NationalityCertificate {
   idNationalityCertificate Int     @id @default(autoincrement())
   nationalityNumber        String  @db.VarChar(220)
-  nationalityIssue         String  @db.VarChar(220)
-  nationalityPlace         String  @db.VarChar(220)
   student                  Student @relation(fields: [studentId], references: [idStudent])
   studentId                Int
 }
@@ -137,8 +139,6 @@ model NationalityCertificate {
 model NationalInfo {
   idNationalInfo Int     @id @default(autoincrement())
   nationalNumber String  @db.VarChar(220)
-  issueNumber    String  @db.VarChar(220)
-  issuePlace     String  @db.VarChar(220)
   motherName     String  @db.VarChar(220)
   religion       String  @db.VarChar(220)
   student        Student @relation(fields: [studentId], references: [idStudent])
@@ -166,11 +166,14 @@ model StudentSchool {
   idStudentSchool              Int               @id @default(autoincrement())
   schoolName                   String            @db.VarChar(220)
   graduationDate               String            @db.VarChar(220)
-  documentDate                 String            @db.VarChar(220)
+  documentDate                 String            @default("1960-01-01") @db.VarChar(220)
   totalMarks                   Int
   average                      Float
-  documentNumber               Int
+  documentNumber               Int               @default(1)
+  documentDigit                Int               @default(1)
   lessonCount                  Int
+  passType                     PassType          @relation(fields: [passTypeId], references: [idPassType])
+  passTypeId                   Int
   directorate                  String            @db.VarChar(220)
   studySubCategory             StudySubCategory  @relation(fields: [studySubCategoryId], references: [idStudySubCategory])
   studySubCategoryId           Int

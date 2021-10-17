@@ -5,8 +5,6 @@ const {
 
 const NationalInfo = function (nationalInfo) {
    this.nationalNumber = nationalInfo.nationalNumber;
-   this.issueNumber = nationalInfo.issueNumber;
-   this.issuePlace = nationalInfo.issuePlace;
    this.studentId = nationalInfo.studentId;
    this.motherName = nationalInfo.motherName;
    this.religion = nationalInfo.religion;

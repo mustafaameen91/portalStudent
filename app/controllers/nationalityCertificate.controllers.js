@@ -9,8 +9,6 @@ exports.create = (req, res) => {
 
    const nationalityCertificate = new NationalityCertificate({
       nationalityNumber: req.body.nationalityNumber,
-      nationalityIssue: req.body.nationalityIssue,
-      nationalityPlace: req.body.nationalityPlace,
       studentId: req.body.studentId,
    });
 

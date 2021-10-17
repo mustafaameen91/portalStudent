@@ -5,8 +5,6 @@ const {
 
 const NationalityCertificate = function (nationalityCertificate) {
    this.nationalityNumber = nationalityCertificate.nationalityNumber;
-   this.nationalityIssue = nationalityCertificate.nationalityIssue;
-   this.nationalityPlace = nationalityCertificate.nationalityPlace;
    this.studentId = nationalityCertificate.studentId;
 };
 
