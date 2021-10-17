@@ -5,6 +5,7 @@ const {
 
 const ExitCauses = function (exitCauses) {
    this.title = exitCauses.title;
+   this.studentId = exitCauses.studentId;
    this.createdBy = exitCauses.createdBy;
 };
 

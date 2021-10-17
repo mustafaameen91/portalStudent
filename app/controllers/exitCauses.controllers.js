@@ -9,6 +9,7 @@ exports.create = (req, res) => {
 
    const exitCauses = new ExitCauses({
       exitCausesTitle: req.body.exitCausesTitle,
+      studentId: req.body.studentId,
       createdBy: req.body.createdBy,
    });
 
