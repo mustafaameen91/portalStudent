@@ -91,7 +91,14 @@ exports.findByFilter = (req, res) => {
    }
 
    if (req.query.orderDate) {
-      filtered.orderDate = req.query.orderDate;
+      var startDate = new Date(req.query.orderDate);
+      var day = 60 * 60 * 24 * 1000;
+      var endDate = new Date(startDate.getTime() + day);
+
+      filtered.orderDate = {
+         lte: endDate.toISOString(),
+         gte: startDate.toISOString(),
+      };
    }
 
    if (req.query.studyType) {

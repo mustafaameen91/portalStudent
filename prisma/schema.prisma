@@ -11,7 +11,7 @@ model AdministrativeOrder {
   idAdministrative Int        @id @default(autoincrement())
   orderTitle       OrderTitle @relation(fields: [orderTitleId], references: [idOrderTitle])
   orderTitleId     Int
-  orderNumber      Int
+  orderNumber      String     @db.VarChar(220)
   orderDescription String     @db.Text
   yearStudy        YearStudy  @relation(fields: [orderYear], references: [idYearStudy])
   orderYear        Int
