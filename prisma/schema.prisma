@@ -13,7 +13,8 @@ model AdministrativeOrder {
   orderTitleId     Int
   orderNumber      Int
   orderDescription String     @db.Text
-  orderYear        String     @db.VarChar(220)
+  yearStudy        YearStudy  @relation(fields: [orderYear], references: [idYearStudy])
+  orderYear        Int
   orderLevel       Int
   student          Student    @relation(fields: [studentId], references: [idStudent])
   studentId        Int
@@ -114,11 +115,12 @@ model Student {
 }
 
 model YearStudy {
-  idYearStudy  Int            @id @default(autoincrement())
-  year         String         @db.VarChar(220)
-  currentYear  Boolean
-  StudentLevel StudentLevel[]
-  Student      Student[]
+  idYearStudy         Int                   @id @default(autoincrement())
+  year                String                @db.VarChar(220)
+  currentYear         Boolean
+  StudentLevel        StudentLevel[]
+  Student             Student[]
+  AdministrativeOrder AdministrativeOrder[]
 }
 
 model StudentResponsible {

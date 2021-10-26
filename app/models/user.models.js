@@ -46,6 +46,30 @@ User.findById = async (userId, result) => {
    }
 };
 
+User.loginUser = async (username, password, result) => {
+   try {
+      const singleUser = await prismaInstance.user.findFirst({
+         where: {
+            userName: username,
+            password: password,
+         },
+      });
+
+      if (singleUser) {
+         result(null, singleUser);
+      } else {
+         result({
+            error: "Not Found",
+            code: 404,
+            errorMessage: "Not Found User with this Id",
+         });
+      }
+   } catch (err) {
+      console.log(prismaErrorHandling(err));
+      result(prismaErrorHandling(err), null);
+   }
+};
+
 User.getAll = async (result) => {
    try {
       const users = await prismaInstance.user.findMany();

@@ -55,6 +55,54 @@ exports.findOne = (req, res) => {
    });
 };
 
+exports.findByFilter = (req, res) => {
+   let filtered = {};
+
+   if (req.query.sectionId) {
+      filtered.sectionId = req.query.sectionId * 1;
+   }
+
+   if (req.query.studentId) {
+      filtered.studentId = req.query.studentId * 1;
+   }
+
+   if (req.query.orderTitleId) {
+      filtered.orderTitleId = req.query.orderTitleId * 1;
+   }
+
+   if (req.query.studentStatusId) {
+      filtered.studentStatusId = req.query.studentStatusId * 1;
+   }
+
+   if (req.query.orderNumber) {
+      filtered.orderNumber = req.query.orderNumber;
+   }
+
+   if (req.query.studentLevel) {
+      filtered.studentLevel = req.query.studentLevel * 1;
+   }
+
+   if (req.query.orderYear) {
+      filtered.orderYear = req.query.orderYear * 1;
+   }
+
+   if (req.query.orderLevel) {
+      filtered.orderLevel = req.query.orderLevel * 1;
+   }
+
+   if (req.query.orderDate) {
+      filtered.orderDate = req.query.orderDate;
+   }
+
+   if (req.query.studyType) {
+      filtered.studyType = req.query.studyType == 1 ? true : false;
+   }
+   AdministrativeOrder.getByFilter(filtered, (err, data) => {
+      if (err) res.status(err.code).send(err);
+      else res.send(data);
+   });
+};
+
 exports.update = (req, res) => {
    if (!req.body) {
       res.status(400).send({

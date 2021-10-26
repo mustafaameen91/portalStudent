@@ -9,6 +9,8 @@ module.exports = (app) => {
 
    app.get("/api/administrativeOrder/:id", administrativeOrder.findOne);
 
+   app.get("/api/searchOrder", administrativeOrder.findByFilter);
+
    app.put("/api/administrativeOrder/:id", administrativeOrder.update);
 
    app.delete("/api/administrativeOrder/:id", administrativeOrder.delete);

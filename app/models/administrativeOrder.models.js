@@ -45,6 +45,31 @@ AdministrativeOrder.createManyOrders = async (
    }
 };
 
+AdministrativeOrder.getByFilter = async (filter, result) => {
+   try {
+      const singleAdministrativeOrder =
+         await prismaInstance.administrativeOrder.findMany({
+            where: { ...filter },
+            include: {
+               student: true,
+            },
+         });
+
+      if (singleAdministrativeOrder) {
+         result(null, singleAdministrativeOrder);
+      } else {
+         result({
+            error: "Not Found",
+            code: 404,
+            errorMessage: "Not Found Administrative Order with this Id",
+         });
+      }
+   } catch (err) {
+      console.log(prismaErrorHandling(err));
+      result(prismaErrorHandling(err), null);
+   }
+};
+
 AdministrativeOrder.findById = async (administrativeId, result) => {
    try {
       const singleAdministrativeOrder =
@@ -75,7 +100,15 @@ AdministrativeOrder.getAll = async (result) => {
          await prismaInstance.administrativeOrder.findMany({
             include: {
                orderTitle: true,
-               student: true,
+               student: {
+                  include: {
+                     studentLevel: {
+                        include: {
+                           yearStudy: true,
+                        },
+                     },
+                  },
+               },
             },
          });
       result(null, administrativeOrders);
