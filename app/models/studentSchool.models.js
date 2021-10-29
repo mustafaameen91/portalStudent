@@ -14,6 +14,7 @@ const StudentSchool = function (studentSchool) {
    this.documentDate = studentSchool.documentDate;
    this.studySubCategoryId = studentSchool.studySubCategoryId;
    this.studentId = studentSchool.studentId;
+   this.passTypeId = studentSchool.passTypeId;
    this.certificateStatusId = studentSchool.certificateStatusId;
    this.certificateStatusDescription =
       studentSchool.certificateStatusDescription;

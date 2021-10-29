@@ -18,7 +18,8 @@ exports.create = (req, res) => {
       lessonCount: req.body.lessonCount * 1,
       directorate: req.body.directorate,
       studySubCategoryId: req.body.studySubCategoryId,
-      studentId: req.body.studentId,
+      studentId: req.body.studentId * 1,
+      passTypeId: req.body.passTypeId * 1,
       certificateStatusId: req.body.certificateStatusId,
       certificateStatusDescription: req.body.certificateStatusDescription,
    });
