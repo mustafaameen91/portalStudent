@@ -20,6 +20,7 @@ exports.create = (req, res) => {
       studySubCategoryId: req.body.studySubCategoryId,
       studentId: req.body.studentId * 1,
       passTypeId: req.body.passTypeId * 1,
+      documentDigit: req.body.documentDigit,
       certificateStatusId: req.body.certificateStatusId,
       certificateStatusDescription: req.body.certificateStatusDescription,
    });
