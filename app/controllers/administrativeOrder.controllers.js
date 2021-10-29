@@ -104,6 +104,7 @@ exports.findByFilter = (req, res) => {
    if (req.query.studyType) {
       filtered.studyType = req.query.studyType == 1 ? true : false;
    }
+
    AdministrativeOrder.getByFilter(filtered, (err, data) => {
       if (err) res.status(err.code).send(err);
       else res.send(data);

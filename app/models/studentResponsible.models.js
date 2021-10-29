@@ -24,6 +24,23 @@ StudentResponsible.create = async (newStudentResponsible, result) => {
    }
 };
 
+StudentResponsible.createManyResponsible = async (
+   studentsResponsible,
+   result
+) => {
+   try {
+      const studentResponsible =
+         await prismaInstance.studentResponsible.createMany({
+            data: studentsResponsible,
+         });
+
+      result(null, studentResponsible);
+   } catch (err) {
+      console.log(prismaErrorHandling(err));
+      result(prismaErrorHandling(err), null);
+   }
+};
+
 StudentResponsible.findById = async (studentResponsibleId, result) => {
    try {
       const singleStudentResponsible =
