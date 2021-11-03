@@ -147,3 +147,17 @@ exports.deleteAll = (req, res) => {
          });
    });
 };
+
+exports.deleteAll = (req, res) => {
+   AdministrativeOrder.removeAllByOrderNumber(
+      req.query.orderNumber,
+      req.query.orderYear,
+      (err, data) => {
+         if (err) res.status(err.code).send(err);
+         else
+            res.send({
+               message: `All administrative Orders were deleted successfully!`,
+            });
+      }
+   );
+};

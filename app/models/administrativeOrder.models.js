@@ -45,6 +45,8 @@ AdministrativeOrder.createManyOrders = async (
    }
 };
 
+// https://smart-lis.com/api/certificates/${reportName}.pdf
+
 AdministrativeOrder.getByFilter = async (filter, result) => {
    try {
       const singleAdministrativeOrder =
@@ -237,6 +239,28 @@ AdministrativeOrder.removeAll = async (result) => {
    try {
       const deleteAllAdministrativeOrders =
          await prismaInstance.administrativeOrder.deleteMany({});
+      result(null, deleteAllAdministrativeOrders);
+   } catch (error) {
+      console.log(prismaErrorHandling(error));
+      result(prismaErrorHandling(error), null);
+   }
+};
+
+AdministrativeOrder.removeAllByOrderNumber = async (
+   orderNumber,
+   orderYear,
+   result
+) => {
+   try {
+      const deleteAllAdministrativeOrders =
+         await prismaInstance.administrativeOrder.deleteMany({
+            where: {
+               orderNumber: orderNumber,
+               AND: {
+                  orderYear: orderYear,
+               },
+            },
+         });
       result(null, deleteAllAdministrativeOrders);
    } catch (error) {
       console.log(prismaErrorHandling(error));
