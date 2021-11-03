@@ -16,4 +16,9 @@ module.exports = (app) => {
    app.delete("/api/administrativeOrder/:id", administrativeOrder.delete);
 
    app.delete("/api/administrativeOrders", administrativeOrder.deleteAll);
+
+   app.delete(
+      "/api/allAdministrativeOrders",
+      administrativeOrder.deleteAllByOrderNumber
+   );
 };

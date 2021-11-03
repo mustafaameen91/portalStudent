@@ -148,7 +148,7 @@ exports.deleteAll = (req, res) => {
    });
 };
 
-exports.deleteAll = (req, res) => {
+exports.deleteAllByOrderNumber = (req, res) => {
    AdministrativeOrder.removeAllByOrderNumber(
       req.query.orderNumber,
       req.query.orderYear,
