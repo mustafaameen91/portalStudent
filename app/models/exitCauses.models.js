@@ -22,6 +22,19 @@ ExitCauses.create = async (newExitCauses, result) => {
    }
 };
 
+ExitCauses.createMany = async (newExitCauses, result) => {
+   try {
+      const exitCauses = await prismaInstance.exitCauses.createMany({
+         data: newExitCauses,
+      });
+
+      result(null, exitCauses);
+   } catch (err) {
+      console.log(prismaErrorHandling(err));
+      result(prismaErrorHandling(err), null);
+   }
+};
+
 ExitCauses.findById = async (exitCausesId, result) => {
    try {
       const singleExitCauses = await prismaInstance.exitCauses.findUnique({
