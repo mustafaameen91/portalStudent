@@ -51,7 +51,36 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
          await prismaInstance.administrativeOrder.findMany({
             where: { ...filter },
             include: {
-               student: true,
+               student: {
+                  include: {
+                     yearStudy: true,
+                     section: true,
+                     studentSchool: true,
+                     studentLevel: {
+                        where: {
+                           yearStudy: {
+                              currentYear: true,
+                           },
+                        },
+                        include: {
+                           yearStudy: true,
+                        },
+                     },
+                     studentGraduation: true,
+                     studentImage: true,
+                     studentStatus: true,
+                     acceptedType: true,
+                     address: {
+                        include: {
+                           province: {
+                              select: {
+                                 provinceName: true,
+                              },
+                           },
+                        },
+                     },
+                  },
+               },
             },
          });
 
@@ -76,6 +105,38 @@ AdministrativeOrder.findById = async (administrativeId, result) => {
          await prismaInstance.administrativeOrder.findUnique({
             where: {
                idAdministrative: JSON.parse(administrativeId),
+            },
+            include: {
+               student: {
+                  include: {
+                     yearStudy: true,
+                     section: true,
+                     studentSchool: true,
+                     studentLevel: {
+                        where: {
+                           yearStudy: {
+                              currentYear: true,
+                           },
+                        },
+                        include: {
+                           yearStudy: true,
+                        },
+                     },
+                     studentGraduation: true,
+                     studentImage: true,
+                     studentStatus: true,
+                     acceptedType: true,
+                     address: {
+                        include: {
+                           province: {
+                              select: {
+                                 provinceName: true,
+                              },
+                           },
+                        },
+                     },
+                  },
+               },
             },
          });
 
@@ -102,9 +163,30 @@ AdministrativeOrder.getAll = async (result) => {
                orderTitle: true,
                student: {
                   include: {
+                     yearStudy: true,
+                     section: true,
+                     studentSchool: true,
                      studentLevel: {
+                        where: {
+                           yearStudy: {
+                              currentYear: true,
+                           },
+                        },
                         include: {
                            yearStudy: true,
+                        },
+                     },
+                     studentGraduation: true,
+                     studentImage: true,
+                     studentStatus: true,
+                     acceptedType: true,
+                     address: {
+                        include: {
+                           province: {
+                              select: {
+                                 provinceName: true,
+                              },
+                           },
                         },
                      },
                   },
