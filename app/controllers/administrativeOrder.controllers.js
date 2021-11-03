@@ -151,7 +151,7 @@ exports.deleteAll = (req, res) => {
 exports.deleteAllByOrderNumber = (req, res) => {
    AdministrativeOrder.removeAllByOrderNumber(
       req.query.orderNumber,
-      req.query.orderYear,
+      req.query.orderYear * 1,
       (err, data) => {
          if (err) res.status(err.code).send(err);
          else
