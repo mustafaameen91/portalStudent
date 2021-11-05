@@ -12,6 +12,7 @@ const AdministrativeOrder = function (administrativeOrder) {
    this.studentId = administrativeOrder.studentId;
    this.orderDate = administrativeOrder.orderDate;
    this.createdBy = administrativeOrder.createdBy;
+   this.studentStatusId = administrativeOrder.studentStatusId;
 };
 
 AdministrativeOrder.create = async (newAdministrativeOrder, result) => {
@@ -37,8 +38,25 @@ AdministrativeOrder.createManyOrders = async (
          await prismaInstance.administrativeOrder.createMany({
             data: newAdministrativeOrders,
          });
+      let condition = newAdministrativeOrders.map((student, index) => {
+         return {
+            idStudent: student.idStudent,
+         };
+      });
 
-      result(null, administrativeOrder);
+      console.log(condition);
+      const changeStudentStatus = prismaInstance.student.updateMany({
+         where: {
+            OR: condition,
+         },
+      });
+
+      // const changeStudentStatus =  await prisma.$executeRaw`UPDATE Student SET studentStatusId = ${newAdministrativeOrder.studentStatusId} WHERE emailValidated = true`
+
+      result(null, {
+         administrativeOrder: administrativeOrder,
+         studentStatus: changeStudentStatus,
+      });
    } catch (err) {
       console.log(prismaErrorHandling(err));
       result(prismaErrorHandling(err), null);
