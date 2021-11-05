@@ -204,6 +204,36 @@ AdministrativeOrder.getAll = async (result) => {
    }
 };
 
+AdministrativeOrder.updateManyOrder = async (administrativeOrder, result) => {
+   let data = {
+      orderTitleId: administrativeOrder.orderTitleId * 1,
+      orderNumber: administrativeOrder.orderNumber,
+      orderDescription: administrativeOrder.orderDescription,
+      orderYear: administrativeOrder.orderYear * 1,
+      orderLevel: administrativeOrder.orderLevel,
+      studentId: administrativeOrder.studentId * 1,
+      orderDate: administrativeOrder.orderDate,
+      createdBy: administrativeOrder.createdBy,
+   };
+
+   try {
+      const updateAdministrativeOrder =
+         await prismaInstance.administrativeOrder.update({
+            where: {
+               orderNumber: orderNumber,
+               AND: {
+                  orderYear: orderYear,
+               },
+            },
+            data: data,
+         });
+      result(null, updateAdministrativeOrder);
+   } catch (error) {
+      console.log(prismaErrorHandling(error));
+      result(prismaErrorHandling(error), null);
+   }
+};
+
 AdministrativeOrder.updateById = async (
    administrativeId,
    administrativeOrder,

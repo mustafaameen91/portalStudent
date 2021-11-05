@@ -13,6 +13,8 @@ module.exports = (app) => {
 
    app.put("/api/administrativeOrder/:id", administrativeOrder.update);
 
+   app.put("/api/updateAdministrativeOrders", administrativeOrder.updateMany);
+
    app.delete("/api/administrativeOrder/:id", administrativeOrder.delete);
 
    app.delete("/api/administrativeOrders", administrativeOrder.deleteAll);
