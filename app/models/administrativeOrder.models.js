@@ -33,6 +33,7 @@ AdministrativeOrder.createManyOrders = async (
    result
 ) => {
    try {
+      console.log(newAdministrativeOrders);
       const administrativeOrder =
          await prismaInstance.administrativeOrder.createMany({
             data: newAdministrativeOrders,
