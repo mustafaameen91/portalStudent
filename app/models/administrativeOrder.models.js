@@ -33,10 +33,23 @@ AdministrativeOrder.createManyOrders = async (
    result
 ) => {
    try {
-      console.log(newAdministrativeOrders);
+      let studentStatusId = newAdministrativeOrders.studentStatusId;
+      let adminData = newAdministrativeOrders.map((order) => {
+         return {
+            orderTitleId: order.orderTitleId * 1,
+            orderNumber: order.orderNumber,
+            orderDescription: order.orderDescription,
+            orderYear: order.orderYear * 1,
+            orderLevel: order.orderLevel * 1,
+            studentId: order.studentId * 1,
+            orderDate: new Date(order.orderDate),
+            createdBy: order.createdBy * 1,
+         };
+      });
+      console.log(adminData);
       const administrativeOrder =
          await prismaInstance.administrativeOrder.createMany({
-            data: newAdministrativeOrders,
+            data: adminData,
          });
       let condition = newAdministrativeOrders.map((student, index) => {
          return {
@@ -50,7 +63,7 @@ AdministrativeOrder.createManyOrders = async (
             OR: condition,
          },
          data: {
-            studentStatusId: newAdministrativeOrder[0].studentStatusId,
+            studentStatusId: studentStatusId,
          },
       });
 
