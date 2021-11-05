@@ -58,7 +58,7 @@ AdministrativeOrder.createManyOrders = async (
 
       console.log(condition);
 
-      const changeStudentStatus = prismaInstance.student.updateMany({
+      const changeStudentStatus = await prismaInstance.student.updateMany({
          where: {
             idStudent: { in: condition },
          },
