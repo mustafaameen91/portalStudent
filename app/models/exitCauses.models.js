@@ -4,7 +4,7 @@ const {
 } = require("./../middleware/handleError.middleware.js");
 
 const ExitCauses = function (exitCauses) {
-   this.title = exitCauses.title;
+   this.exitCausesTitle = exitCauses.exitCausesTitle;
    this.studentId = exitCauses.studentId;
    this.createdBy = exitCauses.createdBy;
 };
