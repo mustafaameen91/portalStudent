@@ -53,7 +53,7 @@ AdministrativeOrder.createManyOrders = async (
          });
       let condition = newAdministrativeOrders.map((student, index) => {
          return {
-            idStudent: student.idStudent,
+            idStudent: student.studentId,
          };
       });
 
