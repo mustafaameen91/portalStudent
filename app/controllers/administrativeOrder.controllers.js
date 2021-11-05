@@ -16,7 +16,6 @@ exports.create = (req, res) => {
       studentId: req.body.studentId,
       orderDate: req.body.orderDate,
       createdBy: req.body.createdBy,
-      studentStatusId: req.body.studentStatusId,
    });
 
    AdministrativeOrder.create(administrativeOrder, (err, data) => {

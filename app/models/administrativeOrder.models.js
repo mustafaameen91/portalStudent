@@ -12,10 +12,13 @@ const AdministrativeOrder = function (administrativeOrder) {
    this.studentId = administrativeOrder.studentId;
    this.orderDate = administrativeOrder.orderDate;
    this.createdBy = administrativeOrder.createdBy;
-   this.studentStatusId = administrativeOrder.studentStatusId;
 };
 
-AdministrativeOrder.create = async (newAdministrativeOrder, result) => {
+AdministrativeOrder.create = async (
+   newAdministrativeOrder,
+   studentStatus,
+   result
+) => {
    try {
       const administrativeOrder =
          await prismaInstance.administrativeOrder.create({
