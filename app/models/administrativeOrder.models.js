@@ -14,11 +14,7 @@ const AdministrativeOrder = function (administrativeOrder) {
    this.createdBy = administrativeOrder.createdBy;
 };
 
-AdministrativeOrder.create = async (
-   newAdministrativeOrder,
-   studentStatus,
-   result
-) => {
+AdministrativeOrder.create = async (newAdministrativeOrder, result) => {
    try {
       const administrativeOrder =
          await prismaInstance.administrativeOrder.create({
@@ -51,6 +47,9 @@ AdministrativeOrder.createManyOrders = async (
       const changeStudentStatus = prismaInstance.student.updateMany({
          where: {
             OR: condition,
+         },
+         data: {
+            studentStatusId: newAdministrativeOrder[0].studentStatusId,
          },
       });
 
