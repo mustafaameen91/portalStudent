@@ -56,8 +56,6 @@ AdministrativeOrder.createManyOrders = async (
          return student.studentId;
       });
 
-      console.log(condition);
-
       const changeStudentStatus = await prismaInstance.student.updateMany({
          where: {
             idStudent: { in: condition },
@@ -66,8 +64,6 @@ AdministrativeOrder.createManyOrders = async (
             studentStatusId: studentStatusId,
          },
       });
-
-      // const changeStudentStatus =  await prisma.$executeRaw`UPDATE Student SET studentStatusId = ${newAdministrativeOrder.studentStatusId} WHERE emailValidated = true`
 
       result(null, {
          administrativeOrder: administrativeOrder,
@@ -78,8 +74,6 @@ AdministrativeOrder.createManyOrders = async (
       result(prismaErrorHandling(err), null);
    }
 };
-
-// https://smart-lis.com/api/certificates/${reportName}.pdf
 
 AdministrativeOrder.getByFilter = async (filter, result) => {
    try {
@@ -248,6 +242,9 @@ AdministrativeOrder.updateManyOrder = async (administrativeOrder, result) => {
       orderDate: new Date(administrativeOrder.orderDate),
    };
 
+   let condition = administrativeOrder.studentIds;
+   let studentStatusId = administrativeOrder.studentStatusId;
+
    try {
       const updateAdministrativeOrder =
          await prismaInstance.administrativeOrder.updateMany({
@@ -259,7 +256,20 @@ AdministrativeOrder.updateManyOrder = async (administrativeOrder, result) => {
             },
             data: data,
          });
-      result(null, updateAdministrativeOrder);
+
+      const changeStudentStatus = await prismaInstance.student.updateMany({
+         where: {
+            idStudent: { in: condition },
+         },
+         data: {
+            studentStatusId: studentStatusId,
+         },
+      });
+
+      result(null, {
+         AdministrativeOrderUpdated: updateAdministrativeOrder,
+         studentStatus: changeStudentStatus,
+      });
    } catch (error) {
       console.log(prismaErrorHandling(error));
       result(prismaErrorHandling(error), null);
