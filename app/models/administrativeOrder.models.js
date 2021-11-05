@@ -46,7 +46,7 @@ AdministrativeOrder.createManyOrders = async (
             createdBy: order.createdBy * 1,
          };
       });
-      console.log(adminData);
+      console.log(studentStatusId);
       const administrativeOrder =
          await prismaInstance.administrativeOrder.createMany({
             data: adminData,
@@ -57,7 +57,6 @@ AdministrativeOrder.createManyOrders = async (
          };
       });
 
-      console.log(condition);
       const changeStudentStatus = prismaInstance.student.updateMany({
          where: {
             OR: condition,
@@ -66,6 +65,7 @@ AdministrativeOrder.createManyOrders = async (
             studentStatusId: studentStatusId,
          },
       });
+      console.log(changeStudentStatus);
 
       // const changeStudentStatus =  await prisma.$executeRaw`UPDATE Student SET studentStatusId = ${newAdministrativeOrder.studentStatusId} WHERE emailValidated = true`
 
