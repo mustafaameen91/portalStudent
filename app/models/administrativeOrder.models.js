@@ -105,9 +105,9 @@ AdministrativeOrder.createManyOrdersUpgrade = async (
 
       let studentLevels = newAdministrativeOrders.map((student, index) => {
          return {
-            studentId: student.studentId,
-            level: student.level,
-            yearStudyId: student.yearStudyId,
+            studentId: student.studentId * 1,
+            level: student.level * 1,
+            yearStudyId: student.yearStudyId * 1,
             class: student.class,
          };
       });
