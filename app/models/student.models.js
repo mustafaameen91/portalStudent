@@ -43,7 +43,12 @@ Student.findById = async (studentId, result) => {
             yearStudy: true,
             section: true,
             studentSchool: true,
-            studentLevel: true,
+            studentLevel: {
+               take: 1,
+               orderBy: {
+                  idStudentLevel: "desc",
+               },
+            },
             studentGraduation: true,
             studentImage: true,
             studentStatus: true,
@@ -92,6 +97,10 @@ Student.getBySearch = async (conditions, result) => {
             section: true,
             studentSchool: true,
             studentLevel: {
+               take: 1,
+               orderBy: {
+                  idStudentLevel: "desc",
+               },
                where: {
                   ...studentLevel,
                },
@@ -139,6 +148,10 @@ Student.getStudentsCount = async (conditions, result) => {
             section: true,
             studentSchool: true,
             studentLevel: {
+               take: 1,
+               orderBy: {
+                  idStudentLevel: "desc",
+               },
                where: {
                   ...studentLevel,
                },
@@ -172,7 +185,12 @@ Student.getAll = async (result) => {
             yearStudy: true,
             section: true,
             studentSchool: true,
-            studentLevel: true,
+            studentLevel: {
+               take: 1,
+               orderBy: {
+                  idStudentLevel: "desc",
+               },
+            },
             studentGraduation: true,
             studentImage: true,
             studentStatus: true,
