@@ -156,6 +156,10 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
                      section: true,
                      studentSchool: true,
                      studentLevel: {
+                        take: 1,
+                        orderBy: {
+                           idStudentLevel: "desc",
+                        },
                         where: {
                            yearStudy: {
                               currentYear: true,
@@ -213,6 +217,10 @@ AdministrativeOrder.findById = async (administrativeId, result) => {
                      section: true,
                      studentSchool: true,
                      studentLevel: {
+                        take: 1,
+                        orderBy: {
+                           idStudentLevel: "desc",
+                        },
                         where: {
                            yearStudy: {
                               currentYear: true,
@@ -267,6 +275,10 @@ AdministrativeOrder.getAll = async (result) => {
                      section: true,
                      studentSchool: true,
                      studentLevel: {
+                        take: 1,
+                        orderBy: {
+                           idStudentLevel: "desc",
+                        },
                         where: {
                            yearStudy: {
                               currentYear: true,
