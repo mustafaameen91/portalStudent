@@ -103,7 +103,7 @@ AdministrativeOrder.createManyOrdersUpgrade = async (
          return student.studentId;
       });
 
-      let studentLevel = newAdministrativeOrders.map((student, index) => {
+      let studentLevels = newAdministrativeOrders.map((student, index) => {
          return {
             studentId: student.studentId,
             level: student.level,
@@ -121,20 +121,20 @@ AdministrativeOrder.createManyOrdersUpgrade = async (
          },
       });
 
-      const studentLevel = await prismaInstance.studentLevel.createMany({
-         data: studentLevel,
+      const studentsLevel = await prismaInstance.studentLevel.createMany({
+         data: studentLevels,
       });
 
       console.log({
          administrativeOrder: administrativeOrder,
          studentStatus: changeStudentStatus,
-         studentLevel: studentLevel,
+         studentLevel: studentsLevel,
       });
 
       result(null, {
          administrativeOrder: administrativeOrder,
          studentStatus: changeStudentStatus,
-         studentLevel: studentLevel,
+         studentLevel: studentsLevel,
       });
    } catch (err) {
       console.log(prismaErrorHandling(err));
