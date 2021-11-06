@@ -244,7 +244,7 @@ AdministrativeOrder.updateManyOrder = async (administrativeOrder, result) => {
 
    let condition = administrativeOrder.studentIds;
    let studentStatusId = administrativeOrder.studentStatusId;
-
+   console.log(condition);
    try {
       const updateAdministrativeOrder =
          await prismaInstance.administrativeOrder.updateMany({
