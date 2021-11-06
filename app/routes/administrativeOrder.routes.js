@@ -5,6 +5,8 @@ module.exports = (app) => {
 
    app.post("/api/addAdministrativeOrders", administrativeOrder.createMany);
 
+   app.post("/api/addOrderLevels", administrativeOrder.createManyUpgrade);
+
    app.get("/api/administrativeOrders", administrativeOrder.findAll);
 
    app.get("/api/administrativeOrder/:id", administrativeOrder.findOne);
