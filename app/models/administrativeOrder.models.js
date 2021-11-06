@@ -75,6 +75,73 @@ AdministrativeOrder.createManyOrders = async (
    }
 };
 
+AdministrativeOrder.createManyOrdersUpgrade = async (
+   newAdministrativeOrders,
+   result
+) => {
+   try {
+      let studentStatusId = newAdministrativeOrders[0].studentStatusId;
+      let adminData = newAdministrativeOrders.map((order) => {
+         return {
+            orderTitleId: order.orderTitleId * 1,
+            orderNumber: order.orderNumber,
+            orderDescription: order.orderDescription,
+            orderYear: order.orderYear * 1,
+            orderLevel: order.orderLevel * 1,
+            studentId: order.studentId * 1,
+            orderDate: new Date(order.orderDate),
+            createdBy: order.createdBy * 1,
+         };
+      });
+
+      const administrativeOrder =
+         await prismaInstance.administrativeOrder.createMany({
+            data: adminData,
+         });
+
+      let condition = newAdministrativeOrders.map((student, index) => {
+         return student.studentId;
+      });
+
+      let studentLevel = newAdministrativeOrders.map((student, index) => {
+         return {
+            studentId: student.studentId,
+            level: student.level,
+            yearStudyId: student.yearStudyId,
+            class: student.class,
+         };
+      });
+
+      const changeStudentStatus = await prismaInstance.student.updateMany({
+         where: {
+            idStudent: { in: condition },
+         },
+         data: {
+            studentStatusId: studentStatusId,
+         },
+      });
+
+      const studentLevel = await prismaInstance.studentLevel.createMany({
+         data: studentLevel,
+      });
+
+      console.log({
+         administrativeOrder: administrativeOrder,
+         studentStatus: changeStudentStatus,
+         studentLevel: studentLevel,
+      });
+
+      result(null, {
+         administrativeOrder: administrativeOrder,
+         studentStatus: changeStudentStatus,
+         studentLevel: studentLevel,
+      });
+   } catch (err) {
+      console.log(prismaErrorHandling(err));
+      result(prismaErrorHandling(err), null);
+   }
+};
+
 AdministrativeOrder.getByFilter = async (filter, result) => {
    try {
       const singleAdministrativeOrder =
@@ -244,7 +311,7 @@ AdministrativeOrder.updateManyOrder = async (administrativeOrder, result) => {
 
    let condition = administrativeOrder.studentIds;
    let studentStatusId = administrativeOrder.studentStatusId;
-   console.log(condition);
+
    try {
       const updateAdministrativeOrder =
          await prismaInstance.administrativeOrder.updateMany({
