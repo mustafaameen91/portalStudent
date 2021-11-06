@@ -107,7 +107,7 @@ AdministrativeOrder.createManyOrdersUpgrade = async (
          return {
             studentId: student.studentId * 1,
             level: student.level * 1,
-            yearStudyId: student.yearStudyId * 1,
+            orderYear: student.orderYear * 1,
             class: student.class,
          };
       });
