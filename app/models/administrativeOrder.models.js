@@ -80,6 +80,7 @@ AdministrativeOrder.createManyOrdersUpgrade = async (
    result
 ) => {
    try {
+      console.log(newAdministrativeOrders);
       let studentStatusId = newAdministrativeOrders[0].studentStatusId;
       let adminData = newAdministrativeOrders.map((order) => {
          return {
