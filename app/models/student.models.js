@@ -49,10 +49,15 @@ Student.findById = async (studentId, result) => {
                   idStudentLevel: "desc",
                },
             },
+            studentResponsables: true,
             studentGraduation: true,
             studentImage: true,
             studentStatus: true,
+            administrativeOrders: true,
             acceptedType: true,
+            nationalInfo: true,
+            nationalityCertificate: true,
+            ExitCauses: true,
             address: {
                include: {
                   province: {
