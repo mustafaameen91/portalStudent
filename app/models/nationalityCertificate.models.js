@@ -22,7 +22,7 @@ NationalityCertificate.create = async (newNationalityCertificate, result) => {
                      ? parseInt(
                           newNationalityCertificate.idNationalityCertificate
                        )
-                     : undefined,
+                     : {},
             },
             update: data,
             create: data,
