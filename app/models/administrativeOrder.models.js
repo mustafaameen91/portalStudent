@@ -145,9 +145,29 @@ AdministrativeOrder.createManyOrdersUpgrade = async (
 
 AdministrativeOrder.getByFilter = async (filter, result) => {
    try {
+      let studentFilter = {
+         sectionId: filter.sectionId,
+         studentStatusId: filter.studentStatusId,
+         gender: filter.gender,
+         studyType: filter.studyType,
+      };
+
+      let adminOrderFilter = {
+         orderTitleId: filter.orderTitleId,
+         orderNumber: filter.orderNumber,
+         orderYear: filter.orderYear,
+         orderLevel: filter.orderLevel,
+         orderDate: filter.orderDate,
+      };
+
       const singleAdministrativeOrder =
          await prismaInstance.administrativeOrder.findMany({
-            where: { ...filter },
+            where: {
+               ...adminOrderFilter,
+               student: {
+                  ...studentFilter,
+               },
+            },
             include: {
                orderTitle: true,
                student: {

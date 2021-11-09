@@ -96,6 +96,10 @@ exports.findByFilter = (req, res) => {
       filtered.studentStatusId = req.query.studentStatusId * 1;
    }
 
+   if (req.query.gender) {
+      filtered.gender = req.query.gender == 1 ? true : false;
+   }
+
    if (req.query.orderNumber) {
       filtered.orderNumber = req.query.orderNumber;
    }
