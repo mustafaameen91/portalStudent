@@ -220,6 +220,7 @@ Student.getAll = async (result) => {
 
 Student.updateById = async (studentId, student, result) => {
    try {
+      console.log(student);
       const updateStudent = await prismaInstance.student.update({
          where: { idStudent: JSON.parse(studentId) },
          data: student,

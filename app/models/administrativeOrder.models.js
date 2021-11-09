@@ -403,8 +403,6 @@ AdministrativeOrder.updateManyOrder = async (administrativeOrder, result) => {
       orderDate: new Date(administrativeOrder.orderDate),
    };
 
-   console.log(data);
-
    let condition = administrativeOrder.studentIds;
    let studentStatusId = administrativeOrder.studentStatusId;
 
