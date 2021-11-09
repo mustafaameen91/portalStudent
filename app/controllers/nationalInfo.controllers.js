@@ -14,7 +14,7 @@ exports.create = (req, res) => {
       religion: req.body.religion,
    });
 
-   NationalInfo.create(nationalInfo, (err, data) => {
+   NationalInfo.create(req.body, (err, data) => {
       if (err) res.status(err.code).send(err);
       else {
          res.send(data);

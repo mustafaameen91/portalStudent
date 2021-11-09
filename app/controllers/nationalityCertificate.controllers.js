@@ -12,7 +12,7 @@ exports.create = (req, res) => {
       studentId: req.body.studentId,
    });
 
-   NationalityCertificate.create(nationalityCertificate, (err, data) => {
+   NationalityCertificate.create(req.body, (err, data) => {
       if (err) res.status(err.code).send(err);
       else {
          res.send(data);
