@@ -24,8 +24,8 @@ NationalityCertificate.create = async (newNationalityCertificate, result) => {
                        )
                      : {},
             },
-            update: data,
             create: data,
+            update: data,
          });
 
       result(null, nationalityCertificate);
