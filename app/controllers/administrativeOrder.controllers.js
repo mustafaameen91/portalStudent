@@ -14,7 +14,7 @@ exports.create = (req, res) => {
       orderYear: req.body.orderYear,
       orderLevel: req.body.orderLevel,
       studentId: req.body.studentId,
-      orderDate: req.body.orderDate,
+      orderDate: new Date(req.body.orderDate),
       createdBy: req.body.createdBy,
    });
 
