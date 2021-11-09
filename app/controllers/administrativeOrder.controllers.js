@@ -116,6 +116,10 @@ exports.findByFilter = (req, res) => {
       filtered.orderLevel = req.query.orderLevel * 1;
    }
 
+   if (req.query.registerYearId) {
+      filtered.registerYearId = req.query.registerYearId * 1;
+   }
+
    if (req.query.orderDate) {
       var startDate = new Date(req.query.orderDate);
       var day = 60 * 60 * 24 * 1000;

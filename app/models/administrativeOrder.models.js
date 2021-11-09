@@ -150,6 +150,7 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
          studentStatusId: filter.studentStatusId,
          gender: filter.gender,
          studyType: filter.studyType,
+         registerYearId: filter.registerYearId,
       };
 
       let adminOrderFilter = {
