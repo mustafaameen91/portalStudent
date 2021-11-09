@@ -100,10 +100,15 @@ exports.update = (req, res) => {
       });
    }
 
-   Student.updateById(req.params.id, new Student(req.body), (err, data) => {
-      if (err) res.status(err.code).send(err);
-      else res.send(data);
-   });
+   Student.updateById(
+      req.params.id,
+      new Student(req.body),
+      req.body,
+      (err, data) => {
+         if (err) res.status(err.code).send(err);
+         else res.send(data);
+      }
+   );
 };
 
 exports.delete = (req, res) => {

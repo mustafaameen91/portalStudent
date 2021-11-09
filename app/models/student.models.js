@@ -218,14 +218,28 @@ Student.getAll = async (result) => {
    }
 };
 
-Student.updateById = async (studentId, student, result) => {
+Student.updateById = async (studentId, student, studentInfo, result) => {
    try {
-      console.log(student);
+      console.log(studentInfo);
       const updateStudent = await prismaInstance.student.update({
          where: { idStudent: JSON.parse(studentId) },
          data: student,
       });
-      result(null, updateStudent);
+      const updateStudentLevel = await prismaInstance.studentLevel.update({
+         where: {
+            idStudentLevel: parseInt(studentInfo.studentLevel.idStudentLevel),
+            data: {
+               level: studentInfo.studentLevel.level,
+               class: studentInfo.studentLevel.class,
+               yearStudyId: parseInt(studentInfo.studentLevel.yearStudyId),
+               studentId: parseInt(studentInfo.studentLevel.studentId),
+            },
+         },
+      });
+      result(null, {
+         updateStudent: updateStudent,
+         updateStudentLevel: updateStudentLevel,
+      });
    } catch (error) {
       console.log(prismaErrorHandling(error));
       result(prismaErrorHandling(error), null);
