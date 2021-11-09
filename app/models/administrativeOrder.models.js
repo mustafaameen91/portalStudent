@@ -399,7 +399,7 @@ AdministrativeOrder.updateManyOrder = async (administrativeOrder, result) => {
       orderNumber: administrativeOrder.orderNumber,
       orderDescription: administrativeOrder.orderDescription,
       orderYear: administrativeOrder.orderYear * 1,
-      orderLevel: administrativeOrder.orderLevel,
+      orderLevel: administrativeOrder.orderLevel * 1,
       orderDate: new Date(administrativeOrder.orderDate),
    };
 
