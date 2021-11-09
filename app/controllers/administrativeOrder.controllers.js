@@ -147,7 +147,7 @@ exports.updateMany = (req, res) => {
          message: "Content can not be empty!",
       });
    }
-
+   console.log(req.body);
    AdministrativeOrder.updateManyOrder(req.body, (err, data) => {
       if (err) res.status(err.code).send(err);
       else res.send(data);
