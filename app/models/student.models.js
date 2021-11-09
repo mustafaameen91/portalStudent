@@ -8,15 +8,15 @@ const Student = function (student) {
    this.englishName = student.englishName;
    this.mail = student.mail;
    this.dob = student.dob;
-   this.sectionId = student.sectionId;
+   this.sectionId = student.sectionId * 1;
    this.nationality = student.nationality;
    this.gender = student.gender;
    this.note = student.note;
    this.studyType = student.studyType;
    this.collegeNumber = student.collegeNumber;
-   this.registerYearId = student.registerYearId;
-   this.studentStatusId = student.studentStatusId;
-   this.acceptedTypeId = student.acceptedTypeId;
+   this.registerYearId = student.registerYearId * 1;
+   this.studentStatusId = student.studentStatusId * 1;
+   this.acceptedTypeId = student.acceptedTypeId * 1;
 };
 
 Student.create = async (newStudent, result) => {
