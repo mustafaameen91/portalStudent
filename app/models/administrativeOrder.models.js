@@ -202,6 +202,67 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
    }
 };
 
+AdministrativeOrder.findByStudentId = async (studentId, result) => {
+   try {
+      const singleAdministrativeOrder =
+         await prismaInstance.administrativeOrder.findMany({
+            where: {
+               studentId: JSON.parse(studentId),
+            },
+            include: {
+               orderTitle: true,
+               student: {
+                  include: {
+                     yearStudy: true,
+                     section: true,
+                     studentSchool: true,
+                     studentLevel: {
+                        take: 1,
+                        orderBy: {
+                           idStudentLevel: "desc",
+                        },
+                        where: {
+                           yearStudy: {
+                              currentYear: true,
+                           },
+                        },
+                        include: {
+                           yearStudy: true,
+                        },
+                     },
+                     studentGraduation: true,
+                     studentImage: true,
+                     studentStatus: true,
+                     acceptedType: true,
+                     address: {
+                        include: {
+                           province: {
+                              select: {
+                                 provinceName: true,
+                              },
+                           },
+                        },
+                     },
+                  },
+               },
+            },
+         });
+
+      if (singleAdministrativeOrder) {
+         result(null, singleAdministrativeOrder);
+      } else {
+         result({
+            error: "Not Found",
+            code: 404,
+            errorMessage: "Not Found Administrative Order with this Id",
+         });
+      }
+   } catch (err) {
+      console.log(prismaErrorHandling(err));
+      result(prismaErrorHandling(err), null);
+   }
+};
+
 AdministrativeOrder.findById = async (administrativeId, result) => {
    try {
       const singleAdministrativeOrder =

@@ -70,6 +70,13 @@ exports.findOne = (req, res) => {
    });
 };
 
+exports.findOneByStudentId = (req, res) => {
+   AdministrativeOrder.findByStudentId(req.params.id, (err, data) => {
+      if (err) res.status(err.code).send(err);
+      else res.send(data);
+   });
+};
+
 exports.findByFilter = (req, res) => {
    let filtered = {};
 

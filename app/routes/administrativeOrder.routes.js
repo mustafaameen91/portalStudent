@@ -11,6 +11,8 @@ module.exports = (app) => {
 
    app.get("/api/administrativeOrder/:id", administrativeOrder.findOne);
 
+   app.get("/api/studentOrders/:id", administrativeOrder.findOneByStudentId);
+
    app.get("/api/searchOrder", administrativeOrder.findByFilter);
 
    app.put("/api/administrativeOrder/:id", administrativeOrder.update);
