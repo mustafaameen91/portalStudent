@@ -10,7 +10,7 @@ const AdministrativeOrder = function (administrativeOrder) {
    this.orderYear = administrativeOrder.orderYear;
    this.orderLevel = administrativeOrder.orderLevel;
    this.studentId = administrativeOrder.studentId;
-   this.orderDate = administrativeOrder.orderDate;
+   this.orderDate = new Date(administrativeOrder.orderDate);
    this.createdBy = administrativeOrder.createdBy;
 };
 
