@@ -121,6 +121,7 @@ model YearStudy {
   StudentLevel        StudentLevel[]
   Student             Student[]
   AdministrativeOrder AdministrativeOrder[]
+  StudentSchool       StudentSchool[]
 }
 
 model StudentResponsible {
@@ -167,7 +168,9 @@ model StudentLevel {
 model StudentSchool {
   idStudentSchool              Int               @id @default(autoincrement())
   schoolName                   String            @db.VarChar(220)
-  graduationDate               String            @db.VarChar(220)
+  examNumber                   String            @db.VarChar(220)
+  yearStudy                    YearStudy         @relation(fields: [graduationDate], references: [idYearStudy])
+  graduationDate               Int               @default(1)
   documentDate                 String            @default("1960-01-01") @db.VarChar(220)
   totalMarks                   Int
   average                      Float

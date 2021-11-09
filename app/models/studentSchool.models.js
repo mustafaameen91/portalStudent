@@ -16,6 +16,7 @@ const StudentSchool = function (studentSchool) {
    this.studentId = studentSchool.studentId;
    this.passTypeId = studentSchool.passTypeId;
    this.documentDigit = studentSchool.documentDigit;
+   this.examNumber = studentSchool.examNumber;
    this.certificateStatusId = studentSchool.certificateStatusId;
    this.certificateStatusDescription =
       studentSchool.certificateStatusDescription;
