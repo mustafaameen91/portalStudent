@@ -4,12 +4,12 @@ const {
 } = require("./../middleware/handleError.middleware.js");
 
 const Address = function (address) {
-   this.provinceId = address.provinceId;
+   this.provinceId = address.provinceId * 1;
    this.district = address.district;
    this.avenue = address.avenue;
    this.houseNumber = address.houseNumber;
    this.streetNumber = address.streetNumber;
-   this.studentId = address.studentId;
+   this.studentId = address.studentId * 1;
 };
 
 Address.create = async (newAddress, result) => {
