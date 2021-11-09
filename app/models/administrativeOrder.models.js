@@ -7,7 +7,7 @@ const AdministrativeOrder = function (administrativeOrder) {
    this.orderTitleId = administrativeOrder.orderTitleId;
    this.orderNumber = administrativeOrder.orderNumber;
    this.orderDescription = administrativeOrder.orderDescription;
-   this.orderYear = administrativeOrder.orderYear;
+   this.orderYear = administrativeOrder.orderYear * 1;
    this.orderLevel = administrativeOrder.orderLevel;
    this.studentId = administrativeOrder.studentId;
    this.orderDate = new Date(administrativeOrder.orderDate);
@@ -80,7 +80,6 @@ AdministrativeOrder.createManyOrdersUpgrade = async (
    result
 ) => {
    try {
-      console.log(newAdministrativeOrders);
       let studentStatusId = newAdministrativeOrders[0].studentStatusId;
       let adminData = newAdministrativeOrders.map((order) => {
          return {
@@ -156,7 +155,7 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
       let adminOrderFilter = {
          orderTitleId: filter.orderTitleId,
          orderNumber: filter.orderNumber,
-         orderYear: filter.orderYear,
+         orderYear: filter.orderYear * 1,
          orderLevel: filter.orderLevel,
          orderDate: filter.orderDate,
       };
