@@ -228,12 +228,12 @@ Student.updateById = async (studentId, student, studentInfo, result) => {
       const updateStudentLevel = await prismaInstance.studentLevel.update({
          where: {
             idStudentLevel: parseInt(studentInfo.studentLevel.idStudentLevel),
-            data: {
-               level: studentInfo.studentLevel.level,
-               class: studentInfo.studentLevel.class,
-               yearStudyId: parseInt(studentInfo.studentLevel.yearStudyId),
-               studentId: parseInt(studentInfo.studentLevel.studentId),
-            },
+         },
+         data: {
+            level: studentInfo.studentLevel.level,
+            class: studentInfo.studentLevel.class,
+            yearStudyId: parseInt(studentInfo.studentLevel.yearStudyId),
+            studentId: parseInt(studentInfo.studentLevel.studentId),
          },
       });
       result(null, {
