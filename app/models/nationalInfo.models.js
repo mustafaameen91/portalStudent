@@ -12,8 +12,12 @@ const NationalInfo = function (nationalInfo) {
 
 NationalInfo.create = async (newNationalInfo, result) => {
    try {
-      const nationalInfo = await prismaInstance.nationalInfo.create({
-         data: newNationalInfo,
+      const nationalInfo = await prismaInstance.nationalInfo.upsert({
+         where: {
+            idNationalInfo: parseInt(newNationalInfo.idNationalInfo),
+         },
+         update: newNationalInfo,
+         create: newNationalInfo,
       });
 
       result(null, nationalInfo);

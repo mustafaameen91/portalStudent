@@ -11,8 +11,14 @@ const NationalityCertificate = function (nationalityCertificate) {
 NationalityCertificate.create = async (newNationalityCertificate, result) => {
    try {
       const nationalityCertificate =
-         await prismaInstance.nationalityCertificate.create({
-            data: newNationalityCertificate,
+         await prismaInstance.nationalityCertificate.upsert({
+            where: {
+               idNationalityCertificate: parseInt(
+                  newNationalityCertificate.idNationalityCertificate
+               ),
+            },
+            update: newNationalityCertificate,
+            create: newNationalityCertificate,
          });
 
       result(null, nationalityCertificate);
