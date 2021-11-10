@@ -13,9 +13,23 @@ const Address = function (address) {
 };
 
 Address.create = async (newAddress, result) => {
+   let data = {
+      provinceId: newAddress.provinceId * 1,
+      district: newAddress.district,
+      avenue: newAddress.avenue,
+      houseNumber: newAddress.houseNumber,
+      streetNumber: newAddress.streetNumber,
+      studentId: newAddress.studentId * 1,
+   };
    try {
-      const address = await prismaInstance.address.create({
-         data: newAddress,
+      const address = await prismaInstance.address.upsert({
+         where: {
+            idAddress: newAddress.idAddress
+               ? parseInt(newAddress.idAddress)
+               : -1,
+         },
+         create: data,
+         update: data,
       });
       console.log(address);
       result(null, address);
