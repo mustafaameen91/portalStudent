@@ -32,6 +32,7 @@ Address.create = async (newAddress, result) => {
          create: data,
          update: data,
       });
+      console.log(address);
       result(null, address);
    } catch (err) {
       console.log(prismaErrorHandling(err));
