@@ -21,6 +21,7 @@ Address.create = async (newAddress, result) => {
       streetNumber: newAddress.streetNumber,
       studentId: newAddress.studentId * 1,
    };
+   console.log(newAddress);
    try {
       const address = await prismaInstance.address.upsert({
          where: {
