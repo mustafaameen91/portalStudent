@@ -166,7 +166,7 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
       let adminOrderFilter = {
          orderTitleId: filter.orderTitleId,
          orderNumber: filter.orderNumber,
-         orderYear: filter.orderYear ? filter.orderYear * 1 : -1,
+         orderYear: filter.orderYear,
          orderLevel: filter.orderLevel,
          orderDate: filter.orderDate,
       };
