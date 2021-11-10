@@ -190,7 +190,11 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
                      section: true,
                      studentSchool: {
                         include: {
-                           studySubCategory: true,
+                           studySubCategory: {
+                              include: {
+                                 studyCategory: true,
+                              },
+                           },
                            certificateStatus: true,
                         },
                      },
