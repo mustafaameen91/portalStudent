@@ -122,6 +122,7 @@ model YearStudy {
   Student             Student[]
   AdministrativeOrder AdministrativeOrder[]
   StudentSchool       StudentSchool[]
+  StudentGraduation   StudentGraduation[]
 }
 
 model StudentResponsible {
@@ -149,10 +150,11 @@ model NationalInfo {
 }
 
 model StudentGraduation {
-  idStudentGraduation Int     @id @default(autoincrement())
-  graduationDate      String  @db.VarChar(220)
-  student             Student @relation(fields: [studentId], references: [idStudent])
-  studentId           Int     @unique
+  idStudentGraduation Int       @id @default(autoincrement())
+  yearStudy           YearStudy @relation(fields: [graduationDate], references: [idYearStudy])
+  graduationDate      Int
+  student             Student   @relation(fields: [studentId], references: [idStudent])
+  studentId           Int       @unique
 }
 
 model StudentLevel {
