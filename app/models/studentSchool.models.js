@@ -23,9 +23,34 @@ const StudentSchool = function (studentSchool) {
 };
 
 StudentSchool.create = async (newStudentSchool, result) => {
+   let data = {
+      schoolName: newStudentSchool.schoolName,
+      graduationDate: newStudentSchool.graduationDate,
+      totalMarks: newStudentSchool.totalMarks * 1,
+      average: newStudentSchool.average * 1,
+      documentNumber: newStudentSchool.documentNumber * 1,
+      lessonCount: newStudentSchool.lessonCount * 1,
+      directorate: newStudentSchool.directorate,
+      documentDate: newStudentSchool.documentDate,
+      studySubCategoryId: newStudentSchool.studySubCategoryId * 1,
+      studentId: newStudentSchool.studentId * 1,
+      passTypeId: newStudentSchool.passTypeId * 1,
+      documentDigit: newStudentSchool.documentDigit * 1,
+      examNumber: newStudentSchool.examNumber,
+      certificateStatusId: newStudentSchool.certificateStatusId * 1,
+      certificateStatusDescription:
+         newStudentSchool.certificateStatusDescription,
+   };
+
    try {
-      const studentSchool = await prismaInstance.studentSchool.create({
-         data: newStudentSchool,
+      const studentSchool = await prismaInstance.studentSchool.upsert({
+         where: {
+            idStudentSchool: newStudentSchool.idStudentSchool
+               ? parseInt(newStudentSchool.idStudentSchool)
+               : -1,
+         },
+         create: data,
+         update: data,
       });
 
       result(null, studentSchool);

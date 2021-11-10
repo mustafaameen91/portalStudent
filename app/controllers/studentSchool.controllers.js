@@ -26,7 +26,7 @@ exports.create = (req, res) => {
       certificateStatusDescription: req.body.certificateStatusDescription,
    });
 
-   StudentSchool.create(studentSchool, (err, data) => {
+   StudentSchool.create(req.body, (err, data) => {
       if (err) res.status(err.code).send(err);
       else {
          res.send(data);
