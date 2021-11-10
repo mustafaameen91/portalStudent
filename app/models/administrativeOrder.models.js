@@ -188,7 +188,10 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
                   include: {
                      yearStudy: true,
                      section: true,
-                     studentSchool: true,
+                     studentSchool: {
+                        studentSubCategory: true,
+                        certificateStatus: true,
+                     },
                      studentLevel: {
                         take: 1,
                         orderBy: {
