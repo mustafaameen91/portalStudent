@@ -410,9 +410,9 @@ AdministrativeOrder.updateManyOrder = async (administrativeOrder, result) => {
       const updateAdministrativeOrder =
          await prismaInstance.administrativeOrder.updateMany({
             where: {
-               orderNumber: data.orderNumber,
+               orderNumber: data.oldOrderNumber,
                AND: {
-                  orderYear: data.orderYear,
+                  orderYear: data.oldOrderYear,
                },
             },
             data: data,
