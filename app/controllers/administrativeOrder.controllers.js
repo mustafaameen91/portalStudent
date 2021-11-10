@@ -120,6 +120,14 @@ exports.findByFilter = (req, res) => {
       filtered.registerYearId = req.query.registerYearId * 1;
    }
 
+   if (req.query.studySubCategoryId) {
+      filtered.studySubCategoryId = req.query.studySubCategoryId * 1;
+   }
+
+   if (req.query.studentGraduation) {
+      filtered.studentGraduation = req.query.studentGraduation * 1;
+   }
+
    if (req.query.orderDate) {
       var startDate = new Date(req.query.orderDate);
       var day = 60 * 60 * 24 * 1000;

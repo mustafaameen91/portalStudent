@@ -150,12 +150,23 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
          gender: filter.gender,
          studyType: filter.studyType,
          registerYearId: filter.registerYearId,
+         studentGraduation: {
+            graduationDate: filter.studentGraduation,
+         },
+         studentLevel: {
+            some: {
+               level: filter.studentLevel,
+            },
+         },
+         studentSchool: {
+            studySubCategoryId: filter.studySubCategoryId,
+         },
       };
 
       let adminOrderFilter = {
          orderTitleId: filter.orderTitleId,
          orderNumber: filter.orderNumber,
-         orderYear: filter.orderYear * 1,
+         orderYear: filter.orderYear ? filter.orderYear * 1 : -1,
          orderLevel: filter.orderLevel,
          orderDate: filter.orderDate,
       };
