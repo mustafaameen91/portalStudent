@@ -156,6 +156,9 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
          studentLevel: {
             some: {
                level: filter.studentLevel,
+               yearStudy: {
+                  currentYear: true,
+               },
             },
          },
          studentSchool: {
