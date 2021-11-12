@@ -5,8 +5,8 @@ const {
 
 const StudentImage = function (studentImage) {
    this.imagePath = studentImage.imagePath;
-   this.imageTypeId = studentImage.imageTypeId;
-   this.studentId = studentImage.studentId;
+   this.imageTypeId = studentImage.imageTypeId * 1;
+   this.studentId = studentImage.studentId * 1;
 };
 
 StudentImage.create = async (newStudentImage, result) => {
