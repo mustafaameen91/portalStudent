@@ -184,6 +184,7 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
             },
             include: {
                orderTitle: true,
+               yearStudy: true,
                student: {
                   include: {
                      yearStudy: true,
@@ -254,6 +255,7 @@ AdministrativeOrder.findByStudentId = async (studentId, result) => {
             },
             include: {
                orderTitle: true,
+               yearStudy: true,
                student: {
                   include: {
                      yearStudy: true,
@@ -315,6 +317,7 @@ AdministrativeOrder.findById = async (administrativeId, result) => {
             },
             include: {
                orderTitle: true,
+               yearStudy: true,
                student: {
                   include: {
                      yearStudy: true,
@@ -373,6 +376,7 @@ AdministrativeOrder.getAll = async (result) => {
          await prismaInstance.administrativeOrder.findMany({
             include: {
                orderTitle: true,
+               yearStudy: true,
                student: {
                   include: {
                      yearStudy: true,

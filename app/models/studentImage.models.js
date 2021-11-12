@@ -5,7 +5,7 @@ const {
 
 const StudentImage = function (studentImage) {
    this.imagePath = studentImage.imagePath;
-   this.imageType = studentImage.imageType;
+   this.imageTypeId = studentImage.imageTypeId;
    this.studentId = studentImage.studentId;
 };
 
