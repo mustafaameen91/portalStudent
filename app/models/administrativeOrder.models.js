@@ -454,6 +454,12 @@ AdministrativeOrder.updateManyOrder = async (administrativeOrder, result) => {
          },
       });
 
+      console.log(`new orders :  ${updateAdministrativeOrder}`);
+
+      console.log({
+         AdministrativeOrderUpdated: updateAdministrativeOrder,
+         studentStatus: changeStudentStatus,
+      });
       result(null, {
          AdministrativeOrderUpdated: updateAdministrativeOrder,
          studentStatus: changeStudentStatus,
