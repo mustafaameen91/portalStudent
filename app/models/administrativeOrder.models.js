@@ -183,10 +183,12 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
                },
             },
             include: {
+               user: true,
                orderTitle: true,
                yearStudy: true,
                student: {
                   include: {
+                     ExitCauses: true,
                      yearStudy: true,
                      section: true,
                      studentSchool: {
@@ -254,6 +256,7 @@ AdministrativeOrder.findByStudentId = async (studentId, result) => {
                studentId: JSON.parse(studentId),
             },
             include: {
+               user: true,
                orderTitle: true,
                yearStudy: true,
                student: {
@@ -275,6 +278,7 @@ AdministrativeOrder.findByStudentId = async (studentId, result) => {
                            yearStudy: true,
                         },
                      },
+                     ExitCauses: true,
                      studentGraduation: true,
                      studentImage: true,
                      studentStatus: true,
@@ -316,10 +320,12 @@ AdministrativeOrder.findById = async (administrativeId, result) => {
                idAdministrative: JSON.parse(administrativeId),
             },
             include: {
+               user: true,
                orderTitle: true,
                yearStudy: true,
                student: {
                   include: {
+                     ExitCauses: true,
                      yearStudy: true,
                      section: true,
                      studentSchool: true,
@@ -375,10 +381,12 @@ AdministrativeOrder.getAll = async (result) => {
       const administrativeOrders =
          await prismaInstance.administrativeOrder.findMany({
             include: {
+               user: true,
                orderTitle: true,
                yearStudy: true,
                student: {
                   include: {
+                     ExitCauses: true,
                      yearStudy: true,
                      section: true,
                      studentSchool: true,
