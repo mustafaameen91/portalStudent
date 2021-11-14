@@ -65,6 +65,21 @@ AdministrativeOrder.createManyOrders = async (
          },
       });
 
+      if (studentStatusId == 3) {
+         let data = condition.map((id) => {
+            return {
+               studentId: id,
+               graduationDate: adminData[0].orderYear,
+            };
+         });
+         const addStudentGraduation =
+            await prismaInstance.studentGraduation.createMany({
+               data: data,
+            });
+
+         console.log(addStudentGraduation);
+      }
+
       result(null, {
          administrativeOrder: administrativeOrder,
          studentStatus: changeStudentStatus,
@@ -172,6 +187,7 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
          orderYear: filter.orderYear,
          orderLevel: filter.orderLevel,
          orderDate: filter.orderDate,
+         studentId: filter.studentId,
       };
 
       const singleAdministrativeOrder =
