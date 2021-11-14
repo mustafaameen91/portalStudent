@@ -437,33 +437,41 @@ AdministrativeOrder.updateManyOrder = async (administrativeOrder, result) => {
       const updateAdministrativeOrder =
          await prismaInstance.administrativeOrder.updateMany({
             where: {
-               orderNumber: data.oldOrderNumber,
-               AND: {
-                  orderYear: data.oldOrderYear,
-               },
+               AND: [
+                  {
+                     orderNumber: {
+                        equals: administrativeOrder.oldOrderNumber,
+                     },
+                  },
+                  {
+                     orderYear: {
+                        equals: administrativeOrder.oldOrderYear,
+                     },
+                  },
+               ],
             },
+
             data: data,
          });
-
-      const changeStudentStatus = await prismaInstance.student.updateMany({
-         where: {
-            idStudent: { in: condition },
-         },
-         data: {
-            studentStatusId: studentStatusId,
-         },
-      });
-
-      console.log(`new orders :  ${updateAdministrativeOrder}`);
-
-      console.log({
-         AdministrativeOrderUpdated: updateAdministrativeOrder,
-         studentStatus: changeStudentStatus,
-      });
-      result(null, {
-         AdministrativeOrderUpdated: updateAdministrativeOrder,
-         studentStatus: changeStudentStatus,
-      });
+      if (condition) {
+         const changeStudentStatus = await prismaInstance.student.updateMany({
+            where: {
+               idStudent: { in: condition },
+            },
+            data: {
+               studentStatusId: studentStatusId,
+            },
+         });
+         result(null, {
+            AdministrativeOrderUpdated: updateAdministrativeOrder,
+            studentStatus: changeStudentStatus,
+         });
+      } else {
+         result(null, {
+            AdministrativeOrderUpdated: updateAdministrativeOrder,
+            studentStatus: "Not Found",
+         });
+      }
    } catch (error) {
       console.log(prismaErrorHandling(error));
       result(prismaErrorHandling(error), null);
