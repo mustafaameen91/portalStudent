@@ -127,6 +127,8 @@ AdministrativeOrder.createManyOrdersUpgrade = async (
          };
       });
 
+      console.log(studentLevels);
+
       const changeStudentStatus = await prismaInstance.student.updateMany({
          where: {
             idStudent: { in: condition },
