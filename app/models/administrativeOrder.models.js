@@ -72,6 +72,7 @@ AdministrativeOrder.createManyOrders = async (
                graduationDate: adminData[0].orderYear,
             };
          });
+
          const addStudentGraduation =
             await prismaInstance.studentGraduation.createMany({
                data: data,
@@ -122,7 +123,7 @@ AdministrativeOrder.createManyOrdersUpgrade = async (
          return {
             studentId: student.studentId * 1,
             level: student.level * 1,
-            yearStudyId: student.orderLevel * 1,
+            yearStudyId: student.orderYear * 1,
             class: student.class,
          };
       });
