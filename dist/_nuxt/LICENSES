@@ -1,3 +1,8 @@
+//! moment.js
+
+//! moment.js locale configuration
+
+
 /**
  * @license
  * Lodash <https://lodash.com/>
@@ -6,11 +11,6 @@
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  */
-
-//! moment.js
-
-//! moment.js locale configuration
-
 
 /*!
  * vue-client-only v0.0.0-semantic-release
