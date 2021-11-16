@@ -21,6 +21,7 @@ exports.findBySearch = (req, res) => {
    if (req.query.sectionId) {
       filtered.sectionId = req.query.sectionId * 1;
    }
+
    if (req.query.registerYearId) {
       filtered.registerYearId = req.query.registerYearId * 1;
    }
@@ -39,6 +40,14 @@ exports.findBySearch = (req, res) => {
 
    if (req.query.studyType) {
       filtered.studyType = req.query.studyType == 1 ? true : false;
+   }
+
+   if (req.query.gender) {
+      filtered.gender = req.query.gender == 1 ? true : false;
+   }
+
+   if (req.query.subCategoryId) {
+      filtered.subCategoryId = req.query.subCategoryId * 1;
    }
 
    Student.getBySearch(filtered, (err, data) => {
