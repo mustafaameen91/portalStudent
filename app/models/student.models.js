@@ -95,7 +95,7 @@ Student.getBySearch = async (conditions, result) => {
    }
    if (conditions.subCategoryId) {
       console.log(conditions.subCategoryId);
-      studentSchool.subCategoryId = conditions.subCategoryId;
+      subCategoryId = conditions.subCategoryId;
       delete conditions.subCategoryId;
    }
    try {
