@@ -116,7 +116,7 @@ Student.getBySearch = async (conditions, result) => {
                studySubCategoryId: subCategoryId,
             },
             studentGraduation: {
-               graduationDate: studentGraduationId * 1,
+               graduationDate: studentGraduationId,
             },
          },
          include: {
