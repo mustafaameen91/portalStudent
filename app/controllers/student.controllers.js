@@ -30,6 +30,10 @@ exports.findBySearch = (req, res) => {
       filtered.studentStatusId = req.query.studentStatusId * 1;
    }
 
+   if (req.query.studentGraduation) {
+      filtered.studentGraduation = req.query.studentGraduation * 1;
+   }
+
    if (req.query.acceptedTypeId) {
       filtered.acceptedTypeId = req.query.acceptedTypeId * 1;
    }
