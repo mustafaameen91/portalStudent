@@ -131,6 +131,22 @@ AdministrativeOrder.createManyOrdersUpgrade = async (
          };
       });
 
+      if (studentStatusId * 1 == 3) {
+         let data = condition.map((id) => {
+            return {
+               studentId: id,
+               graduationDate: adminData[0].orderYear,
+            };
+         });
+         console.log(data);
+         const addStudentGraduation =
+            await prismaInstance.studentGraduation.createMany({
+               data: data,
+            });
+
+         console.log(addStudentGraduation);
+      }
+
       const changeStudentStatus = await prismaInstance.student.updateMany({
          where: {
             idStudent: { in: condition },
