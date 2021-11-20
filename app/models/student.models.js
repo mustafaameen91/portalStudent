@@ -41,8 +41,13 @@ Student.findById = async (studentId, result) => {
          },
          include: {
             yearStudy: true,
+            ExitCauses: true,
             section: true,
-            studentSchool: true,
+            studentSchool: {
+               include: {
+                  yearStudy: true,
+               }
+            },
             studentLevel: {
                take: 1,
                orderBy: {
@@ -122,7 +127,12 @@ Student.getBySearch = async (conditions, result) => {
          include: {
             yearStudy: true,
             section: true,
-            studentSchool: true,
+            ExitCauses: true,
+            studentSchool: {
+               include: {
+                  yearStudy: true,
+               }
+            },
             studentLevel: {
                take: 1,
                orderBy: {
@@ -132,7 +142,11 @@ Student.getBySearch = async (conditions, result) => {
                   ...studentLevel,
                },
             },
-            studentGraduation: true,
+            studentGraduation: {
+               include: {
+                  yearStudy: true,
+               }
+            },
             studentImage: true,
             studentStatus: true,
             acceptedType: true,
