@@ -46,7 +46,7 @@ Student.findById = async (studentId, result) => {
             studentSchool: {
                include: {
                   yearStudy: true,
-               }
+               },
             },
             studentLevel: {
                take: 1,
@@ -137,10 +137,10 @@ Student.getBySearch = async (conditions, result) => {
                   certificateStatus: true,
                   studySubCategory: {
                      include: {
-                        studyCategory: true
-                     }
+                        studyCategory: true,
+                     },
                   },
-               }
+               },
             },
             studentLevel: {
                take: 1,
@@ -154,7 +154,7 @@ Student.getBySearch = async (conditions, result) => {
             studentGraduation: {
                include: {
                   yearStudy: true,
-               }
+               },
             },
             studentImage: true,
             studentStatus: true,

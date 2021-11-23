@@ -31,6 +31,10 @@ exports.findBySearch = (req, res) => {
       filtered.sectionId = req.query.sectionId * 1;
    }
 
+   if (req.query.studentId) {
+      filtered.studentId = req.query.studentId * 1;
+   }
+
    if (req.query.registerYearId) {
       filtered.registerYearId = req.query.registerYearId * 1;
    }
