@@ -27,6 +27,12 @@ exports.createByFile = (req, res) => {
 exports.findBySearch = (req, res) => {
    let filtered = {};
 
+   if (req.query.studentName) {
+      filtered.studentName = {
+         startsWith: req.query.studentName,
+      };
+   }
+
    if (req.query.sectionId) {
       filtered.sectionId = req.query.sectionId * 1;
    }
