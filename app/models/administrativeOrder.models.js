@@ -191,9 +191,6 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
          studentLevel: {
             some: {
                level: filter.studentLevel,
-               yearStudy: {
-                  currentYear: true,
-               },
             },
          },
          studentSchool: {
@@ -227,14 +224,18 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
                      ExitCauses: true,
                      yearStudy: true,
                      section: true,
+                     nationalInfo: true,
+                     nationalityCertificate: true,
                      studentSchool: {
                         include: {
+                           yearStudy: true,
+                           passType: true,
+                           certificateStatus: true,
                            studySubCategory: {
                               include: {
                                  studyCategory: true,
                               },
                            },
-                           certificateStatus: true,
                         },
                      },
                      studentLevel: {
@@ -242,19 +243,19 @@ AdministrativeOrder.getByFilter = async (filter, result) => {
                         orderBy: {
                            idStudentLevel: "desc",
                         },
-                        where: {
-                           yearStudy: {
-                              currentYear: true,
-                           },
-                        },
                         include: {
                            yearStudy: true,
                         },
                      },
-                     studentGraduation: true,
+                     studentGraduation: {
+                        include: {
+                           yearStudy: true,
+                        },
+                     },
                      studentImage: true,
                      studentStatus: true,
                      acceptedType: true,
+                     studentResponsables: true,
                      address: {
                         include: {
                            province: {
@@ -305,17 +306,16 @@ AdministrativeOrder.findByStudentId = async (studentId, result) => {
                         orderBy: {
                            idStudentLevel: "desc",
                         },
-                        where: {
-                           yearStudy: {
-                              currentYear: true,
-                           },
-                        },
                         include: {
                            yearStudy: true,
                         },
                      },
                      ExitCauses: true,
-                     studentGraduation: true,
+                     studentGraduation: {
+                        include: {
+                           yearStudy: true,
+                        },
+                     },
                      studentImage: true,
                      studentStatus: true,
                      acceptedType: true,
@@ -370,11 +370,6 @@ AdministrativeOrder.findById = async (administrativeId, result) => {
                         orderBy: {
                            idStudentLevel: "desc",
                         },
-                        where: {
-                           yearStudy: {
-                              currentYear: true,
-                           },
-                        },
                         include: {
                            yearStudy: true,
                         },
@@ -425,25 +420,38 @@ AdministrativeOrder.getAll = async (result) => {
                      ExitCauses: true,
                      yearStudy: true,
                      section: true,
-                     studentSchool: true,
+                     nationalInfo: true,
+                     nationalityCertificate: true,
+                     studentSchool: {
+                        include: {
+                           yearStudy: true,
+                           passType: true,
+                           certificateStatus: true,
+                           studySubCategory: {
+                              include: {
+                                 studyCategory: true,
+                              },
+                           },
+                        },
+                     },
                      studentLevel: {
                         take: 1,
                         orderBy: {
                            idStudentLevel: "desc",
                         },
-                        where: {
-                           yearStudy: {
-                              currentYear: true,
-                           },
-                        },
                         include: {
                            yearStudy: true,
                         },
                      },
-                     studentGraduation: true,
+                     studentGraduation: {
+                        include: {
+                           yearStudy: true,
+                        },
+                     },
                      studentImage: true,
                      studentStatus: true,
                      acceptedType: true,
+                     studentResponsables: true,
                      address: {
                         include: {
                            province: {

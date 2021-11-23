@@ -15,6 +15,15 @@ exports.create = (req, res) => {
    });
 };
 
+exports.createByFile = (req, res) => {
+   Student.createFromFile((err, data) => {
+      if (err) res.status(err.code).send(err);
+      else {
+         res.send(data);
+      }
+   });
+};
+
 exports.findBySearch = (req, res) => {
    let filtered = {};
 

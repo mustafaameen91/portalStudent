@@ -125,12 +125,21 @@ Student.getBySearch = async (conditions, result) => {
             },
          },
          include: {
+            ExitCauses: true,
             yearStudy: true,
             section: true,
-            ExitCauses: true,
+            nationalInfo: true,
+            nationalityCertificate: true,
             studentSchool: {
                include: {
                   yearStudy: true,
+                  passType: true,
+                  certificateStatus: true,
+                  studySubCategory: {
+                     include: {
+                        studyCategory: true
+                     }
+                  },
                }
             },
             studentLevel: {
@@ -150,6 +159,7 @@ Student.getBySearch = async (conditions, result) => {
             studentImage: true,
             studentStatus: true,
             acceptedType: true,
+            studentResponsables: true,
             address: {
                include: {
                   province: {
