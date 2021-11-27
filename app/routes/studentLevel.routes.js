@@ -5,6 +5,8 @@ module.exports = (app) => {
 
    app.get("/api/studentLevels", studentLevel.findAll);
 
+   app.get("/api/storeStudentsLevel", studentLevel.createByFile);
+
    app.get("/api/studentLevel/:id", studentLevel.findOne);
 
    app.put("/api/studentLevel/:id", studentLevel.update);
