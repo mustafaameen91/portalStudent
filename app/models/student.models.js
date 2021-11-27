@@ -192,6 +192,8 @@ Student.getBySearch = async (conditions, result) => {
          },
       });
 
+      console.log(students);
+
       let filteredStudent = students.filter((student) => {
          return student.studentLevel.length > 0;
       });
