@@ -90,6 +90,25 @@ Student.findById = async (studentId, result) => {
    }
 };
 
+Student.createFromFile = async (result) => {
+   let data = JSON.parse(fs.readFileSync(__dirname + "/students.txt", "utf-8"));
+
+   if (data.length > 0) {
+      try {
+         const section = await prismaInstance.student.createMany({
+            data: data,
+         });
+
+         result(null, section);
+      } catch (err) {
+         console.log(prismaErrorHandling(err));
+         result(prismaErrorHandling(err), null);
+      }
+   } else {
+      result(null, { message: "notValid" });
+   }
+};
+
 Student.getBySearch = async (conditions, result) => {
    let studentLevel = {};
    let subCategoryId;
