@@ -46,6 +46,27 @@ StudentLevel.findById = async (studentLevelId, result) => {
    }
 };
 
+StudentLevel.createFromFile = async (result) => {
+   let data = JSON.parse(
+      fs.readFileSync(__dirname + "/studentsLevel.txt", "utf-8")
+   );
+
+   if (data.length > 0) {
+      try {
+         const section = await prismaInstance.studentLevel.createMany({
+            data: data,
+         });
+
+         result(null, section);
+      } catch (err) {
+         console.log(prismaErrorHandling(err));
+         result(prismaErrorHandling(err), null);
+      }
+   } else {
+      result(null, { message: "notValid" });
+   }
+};
+
 StudentLevel.getAll = async (result) => {
    try {
       const studentLevels = await prismaInstance.studentLevel.findMany();

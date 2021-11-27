@@ -192,11 +192,10 @@ Student.getBySearch = async (conditions, result) => {
          },
       });
 
-      console.log(students);
-
       let filteredStudent = students.filter((student) => {
          return student.studentLevel.length > 0;
       });
+
       result(null, filteredStudent);
    } catch (err) {
       console.log(prismaErrorHandling(err));
