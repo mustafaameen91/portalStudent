@@ -7,6 +7,8 @@ module.exports = (app) => {
 
    app.get("/api/address/:id", address.findOne);
 
+   app.get("/api/storeStudentsAddress", address.createByFile);
+
    app.put("/api/address/:id", address.update);
 
    app.delete("/api/address/:id", address.delete);

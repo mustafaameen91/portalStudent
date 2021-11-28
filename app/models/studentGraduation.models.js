@@ -67,6 +67,27 @@ StudentGraduation.findById = async (studentGraduationId, result) => {
    }
 };
 
+StudentGraduation.createFromFile = async (result) => {
+   let data = JSON.parse(
+      fs.readFileSync(__dirname + "/studentsGraduation.txt", "utf-8")
+   );
+
+   if (data.length > 0) {
+      try {
+         const section = await prismaInstance.nationalInfo.createMany({
+            data: data,
+         });
+
+         result(null, section);
+      } catch (err) {
+         console.log(prismaErrorHandling(err));
+         result(prismaErrorHandling(err), null);
+      }
+   } else {
+      result(null, { message: "notValid" });
+   }
+};
+
 StudentGraduation.getAll = async (result) => {
    try {
       const studentGraduations =

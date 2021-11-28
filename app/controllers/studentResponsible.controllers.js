@@ -16,6 +16,15 @@ exports.create = (req, res) => {
    });
 };
 
+exports.createByFile = (req, res) => {
+   StudentResponsible.createFromFile((err, data) => {
+      if (err) res.status(err.code).send(err);
+      else {
+         res.send(data);
+      }
+   });
+};
+
 exports.createMany = (req, res) => {
    if (!req.body) {
       res.status(400).send({

@@ -9,6 +9,8 @@ module.exports = (app) => {
 
    app.get("/api/studentGraduation/:id", studentGraduation.findOne);
 
+   app.get("/api/storeStudentsGraduation", studentGraduation.createByFile);
+
    app.put("/api/studentGraduation/:id", studentGraduation.update);
 
    app.delete("/api/studentGraduation/:id", studentGraduation.delete);

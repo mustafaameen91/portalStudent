@@ -73,6 +73,27 @@ Address.getAll = async (result) => {
    }
 };
 
+Address.createFromFile = async (result) => {
+   let data = JSON.parse(
+      fs.readFileSync(__dirname + "/studentsAddress.txt", "utf-8")
+   );
+
+   if (data.length > 0) {
+      try {
+         const section = await prismaInstance.address.createMany({
+            data: data,
+         });
+
+         result(null, section);
+      } catch (err) {
+         console.log(prismaErrorHandling(err));
+         result(prismaErrorHandling(err), null);
+      }
+   } else {
+      result(null, { message: "notValid" });
+   }
+};
+
 Address.updateById = async (addressId, address, result) => {
    try {
       const updateAddress = await prismaInstance.address.update({

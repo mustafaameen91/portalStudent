@@ -82,6 +82,27 @@ StudentResponsible.getAll = async (result) => {
    }
 };
 
+StudentResponsible.createFromFile = async (result) => {
+   let data = JSON.parse(
+      fs.readFileSync(__dirname + "/studentsResponsible.txt", "utf-8")
+   );
+
+   if (data.length > 0) {
+      try {
+         const section = await prismaInstance.studentResponsible.createMany({
+            data: data,
+         });
+
+         result(null, section);
+      } catch (err) {
+         console.log(prismaErrorHandling(err));
+         result(prismaErrorHandling(err), null);
+      }
+   } else {
+      result(null, { message: "notValid" });
+   }
+};
+
 StudentResponsible.updateById = async (
    studentResponsibleId,
    studentResponsible,

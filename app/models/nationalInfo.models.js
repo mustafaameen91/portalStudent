@@ -68,6 +68,27 @@ NationalInfo.getAll = async (result) => {
    }
 };
 
+NationalInfo.createFromFile = async (result) => {
+   let data = JSON.parse(
+      fs.readFileSync(__dirname + "/studentsNationalInfo.txt", "utf-8")
+   );
+
+   if (data.length > 0) {
+      try {
+         const section = await prismaInstance.nationalInfo.createMany({
+            data: data,
+         });
+
+         result(null, section);
+      } catch (err) {
+         console.log(prismaErrorHandling(err));
+         result(prismaErrorHandling(err), null);
+      }
+   } else {
+      result(null, { message: "notValid" });
+   }
+};
+
 NationalInfo.updateById = async (nationalInfoId, nationalInfo, result) => {
    try {
       const updateNationalInfo = await prismaInstance.nationalInfo.update({

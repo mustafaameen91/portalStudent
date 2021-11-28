@@ -5,6 +5,8 @@ module.exports = (app) => {
 
    app.post("/api/addManyResponsible", studentResponsible.createMany);
 
+   app.get("/api/storeStudentsResponsible", studentResponsible.createByFile);
+
    app.get("/api/studentsResponsible", studentResponsible.findAll);
 
    app.get("/api/studentResponsible/:id", studentResponsible.findOne);
