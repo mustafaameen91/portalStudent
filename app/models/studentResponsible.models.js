@@ -2,6 +2,7 @@ const {
    prismaErrorHandling,
    prismaInstance,
 } = require("./../middleware/handleError.middleware.js");
+const fs = require("fs");
 
 const StudentResponsible = function (studentResponsible) {
    this.responsibleName = studentResponsible.responsibleName;
