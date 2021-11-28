@@ -2,6 +2,7 @@ const {
    prismaErrorHandling,
    prismaInstance,
 } = require("./../middleware/handleError.middleware.js");
+const fs = require("fs");
 
 const NationalInfo = function (nationalInfo) {
    this.nationalNumber = nationalInfo.nationalNumber;
